@@ -49,10 +49,9 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
-        docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/taylorreece/blog',
+        blog: {
+          path: './blog',
+          routeBasePath: '/', // Set this value to '/'.
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
