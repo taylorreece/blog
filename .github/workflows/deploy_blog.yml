@@ -15,11 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: borales/actions-yarn@v2.0.0
+      - name: Install Dependencies
+        uses: borales/actions-yarn@v2.0.0
         with:
-          path: blog/
+          path: blog
           cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
+      - name: Build
+        uses: borales/actions-yarn@v2.0.0
         with:
-          path: blog/
+          path: blog
           cmd: build # will run `yarn build` command
