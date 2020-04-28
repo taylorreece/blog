@@ -1,0 +1,29 @@
+---
+id: material-ui-icons-to-docusaurus
+title: Adding Material UI Icons to Docusaurus
+author: Taylor Reece
+author_url: https://github.com/taylorreece
+author_image_url: https://avatars1.githubusercontent.com/u/3622586?s=400&u=92d81adf0d87e31ac26d0f335e154697c2e5d04a&v=4
+tags: [documentation, material-ui, docusaurus]
+description: Add Material UI Icons to docusaurus
+---
+
+I wanted to add some [Material Design Icons](https://material.io/resources/icons/?style=baseline) to a [Docusaurus](https://docusaurus.io/) documentation page that I'm working on, but couldn't find a good tutorial on how to do exactly that.  I'm relatively new to the React.js world, so I had to futz for a bit, but eventually got it figured out.  <!-- truncate -->I figured I'd share, in case anyone else wants to add material icons to their Docusaurus site:
+
+Install `@material-ui/core`
+
+```bash
+npm install @material-ui/core
+```
+
+Within a `.mdx` file (blog or docs file), import the appropriate React component.  Throw this just under your metadata block:
+
+```javascript
+import Icon from '@material-ui/core/Icon';
+```
+
+Finally, within your .mdx page you can pepper various icons:
+
+```javascript
+<Icon>face</Icon>
+```
