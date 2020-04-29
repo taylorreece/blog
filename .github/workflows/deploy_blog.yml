@@ -20,9 +20,9 @@ jobs:
         with:
           cmd: install # will run `yarn install` command
       - name: Check markdown syntax
-          uses: borales/actions-yarn@v2.0.0
-          with:
-            cmd: check # will run `yarn check` to check syntax
+        uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: check # will run `yarn check` to check syntax
       - name: Build Website
         uses: borales/actions-yarn@v2.0.0
         with:
