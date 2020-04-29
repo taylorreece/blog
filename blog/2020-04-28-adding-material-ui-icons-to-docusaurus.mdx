@@ -8,7 +8,7 @@ tags: [documentation, material-ui, docusaurus]
 description: Add Material UI Icons to docusaurus
 ---
 
-I wanted to add some [Material Design Icons](https://material.io/resources/icons/?style=baseline) to a [Docusaurus](https://docusaurus.io/) documentation page that I'm working on, but couldn't find a good tutorial on how to do exactly that.  I'm relatively new to the React.js world, so I had to futz for a bit, but eventually got it figured out.  <!-- truncate -->I figured I'd share, in case anyone else wants to add material icons to their Docusaurus site:
+I wanted to add some [Material Design Icons](https://material.io/resources/icons/?style=baseline) to a [Docusaurus](https://docusaurus.io/) documentation page that I'm working on, but couldn't find a good tutorial on how to do exactly that. I'm relatively new to the React.js world, so I had to futz for a bit, but eventually got it figured out. <!-- truncate -->I figured I'd share, in case anyone else wants to add material icons to their Docusaurus site:
 
 Install `@material-ui/core`
 
@@ -16,7 +16,7 @@ Install `@material-ui/core`
 npm install @material-ui/core
 ```
 
-Within your config file `docusaurus.config.js`, add an import of the material icons font family.  See [docs](https://v2.docusaurus.io/docs/docusaurus.config.js#stylesheets)
+Within your config file `docusaurus.config.js`, add an import of the material icons font family. See [docs](https://v2.docusaurus.io/docs/docusaurus.config.js#stylesheets)
 
 ```js
   stylesheets: [
@@ -24,10 +24,10 @@ Within your config file `docusaurus.config.js`, add an import of the material ic
   ],
 ```
 
-Within a `.mdx` file (blog or docs file), import the appropriate React component.  Throw this just under your metadata block:
+Within a `.mdx` file (blog or docs file), import the appropriate React component. Throw this just under your metadata block:
 
 ```javascript
-import Icon from '@material-ui/core/Icon';
+import Icon from "@material-ui/core/Icon";
 ```
 
 Finally, within your .mdx page you can pepper various icons:
