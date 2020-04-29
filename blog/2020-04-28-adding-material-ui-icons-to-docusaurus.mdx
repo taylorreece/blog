@@ -16,10 +16,12 @@ Install `@material-ui/core`
 npm install @material-ui/core
 ```
 
-Within your custom css file `src/css/custom.css`, add an import of the material icons font family
+Within your config file `docusaurus.config.js`, add an import of the material icons font family.  See [docs](https://v2.docusaurus.io/docs/docusaurus.config.js#stylesheets)
 
-```css
-@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
+```js
+  stylesheets: [
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+  ],
 ```
 
 Within a `.mdx` file (blog or docs file), import the appropriate React component.  Throw this just under your metadata block:
