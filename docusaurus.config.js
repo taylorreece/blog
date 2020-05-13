@@ -44,6 +44,10 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Taylor Reece`,
     },
+    algolia: {
+      apiKey: 'e1991fcee72487919fa20f634520d80e',
+      indexName: 'reecemath',
+    },
     disableDarkMode: true,
   },
   presets: [
