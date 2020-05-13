@@ -1,4 +1,4 @@
-![](https://github.com/taylorreece/blog/workflows/Deploy%20Blog/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/26d681a0-7513-4090-bf8c-00091f6d47ba/deploy-status)](https://app.netlify.com/sites/ecstatic-perlman-569f64/deploys)
 
 # Website
 

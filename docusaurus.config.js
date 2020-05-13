@@ -44,6 +44,7 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Taylor Reece`,
     },
+    disableDarkMode: true,
   },
   presets: [
     [
