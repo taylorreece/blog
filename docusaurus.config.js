@@ -14,7 +14,7 @@ module.exports = {
         src:
           "https://avatars1.githubusercontent.com/u/3622586?s=400&u=92d81adf0d87e31ac26d0f335e154697c2e5d04a&v=4",
       },
-      links: [
+      items: [
         {
           href: "https://github.com/taylorreece",
           label: "GitHub",
