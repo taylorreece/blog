@@ -43,15 +43,11 @@ module.exports = {
             {
               label: "Twitter",
               href: "https://twitter.com/taylorreeceSD",
-            }
+            },
           ],
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Taylor Reece`,
-    },
-    algolia: {
-      apiKey: "e1991fcee72487919fa20f634520d80e",
-      indexName: "reecemath",
     },
     colorMode: {
       defaultMode: "light",
@@ -63,6 +59,7 @@ module.exports = {
     [
       "@docusaurus/preset-classic",
       {
+        docs: false,
         blog: {
           path: "./blog",
           routeBasePath: "/", // Set this value to '/'.
