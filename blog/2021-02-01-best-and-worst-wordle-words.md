@@ -36,4 +36,4 @@ It turns out, those goals (lots of correct letters, eliminates lots of possible 
 ## Guess and Solution Words
 
 If you look at Wordle's source code, there are two sets of words: possible solutions, and a dictionary of valid guesses you can make.
-I've posted the [possible solutions]
+I've posted the [possible solutions](https://raw.githubusercontent.com/taylorreece/wordle/main/solutions.txt) (of which there are 2315), and [valid guesses](https://raw.githubusercontent.com/taylorreece/wordle/main/words.txt) (12972 words).
