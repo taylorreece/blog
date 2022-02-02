@@ -1,0 +1,114 @@
+---
+slug: best-and-worst-wordle-words
+title: Best and Worst Wordle Words
+author: Taylor Reece
+author_url: https://twitter.com/taylorreeceSD
+author_image_url: https://avatars1.githubusercontent.com/u/3622586?s=400&u=92d81adf0d87e31ac26d0f335e154697c2e5d04a&v=4
+tags: [wordle, guesses]
+description: What are the best (and worst) first words to guess in Wordle?
+---
+
+**Soare**. _noun. A young hawk._ If you're here for the "best" first word to use in Wordle, there it is.
+
+### What is Wordle?
+
+[Wordle](https://www.powerlanguage.co.uk/wordle/) is the word game craze that gained extreme popularity in January of 2021.
+
+The game is pretty simple: guess a daily 5-letter word.
+You have six chances.
+If you guess incorrectly, the letters in your guess are highlighted green, yellow and gray:
+
+- Green indicates that the letter was correct, and in the right position
+- Yellow indicates that the letter appears in the word, but not in that position
+- All incorrect letters appear in gray
+
+  ![Wordle screenshot](/img/wordle/screenshot.png)
+
+In this post, let's look at the best and worst words to start with in Wordle.
+
+### The Strategy
+
+Obviously some first guesses are better than others.
+Friends on Twitter or Facebook have recommended words like `audio` or `rinse`, since those contain very common letters.
+That makes sense - it's helpful to use words that yield a lot of yellow or green letters.
+A guess like `xylyl` (which is a [real word](https://www.merriam-webster.com/medical/xylyl)!) will likely result in an all-gray, largely wasted guess and would only eliminate words that contain X's, Y's and L's.
+
+So... what makes a good guess?
+In my opinion, a good guess not only gives you some correct letters, but _eliminates_ the largest set of possible solutions.
+**Good news!**
+It turns out, those two goals (lots of correct letters _and_ eliminates lots of possible solutions) go hand-in-hand - if you get a lot of correct letters, the number of remaining possible solutions becomes small.
+
+### Programming a Solution
+
+If you look at Wordle's source code, you'll find two sets of words: possible solutions, and a dictionary of valid guesses you can make:
+
+![Words source code](/img/wordle/source-code.png)
+
+For convenience I've posted the [possible solutions](https://raw.githubusercontent.com/taylorreece/wordle/main/solutions.txt) (of which there are 2,315), and [valid guess words](https://raw.githubusercontent.com/taylorreece/wordle/main/words.txt) (12,972 words) in a [GitHub repo](https://github.com/taylorreece/wordle).
+
+:::caution Bad code warning
+**Disclaimer**: My code is terribly inefficient (like, `O(n^3)` bad).
+I'm sure there's a better algorithm involving graphs and trees that runs in `O(n log n)` or whatever, but this runs in a few hours so it's _fine_...
+:::
+
+Next, I wrote up some code.
+My [script](https://github.com/taylorreece/wordle/blob/main/index.js#L92-L117) went something like this:
+
+```
+for each guess:
+  for each possible solution:
+    - Compute the "green-green-gray-yellow-gray" pattern that this
+      guess and solution combination make
+    - Figure out how many possible solutions are still valid given
+      that pattern
+    - Record that number
+```
+
+That gives you an idea of how "good" each guess is for any given solution.
+
+Once you have a set of numbers for each guess, figure out the **average** number of solutions that are eliminated by guessing some particular word.
+Depending on the guess, the data had a pretty hard right or left-skew, so in my opinion **median** best represents the "average" here.
+Given some solution, thus-and-such guess should yield about _N_ remaining options for solutions. 
+
+### The Results
+
+After letting my little Macbook churn on my script for 4 hours, I had results.
+
+The top 10 **best** words to start out a game of Wordle are:
+
+guess|Median words remaining|Mean words remaining|Standard deviation|
+---|---|---|---
+SOARE|79.0|219.75|304.9
+SAICE|80.0|232.78|318.85
+SAINE|81.0|230.17|320.17
+ARISE|91.0|254.45|355.75
+RAISE|96.0|236.61|331.34
+SANER|99.0|271.33|372.04
+RAINE|102.0|253.77|349.27
+SANTO|105.0|353.49|464.29
+SATIN|105.0|347.2|465.33
+SNARE|105.0|267.51|370.77
+
+And the 10 absolute **worst** words to start a game of Wordle out with are:
+
+guess|Median words remaining|Mean words remaining|Standard deviation|
+---|---|---|---
+OXBOW|2077.0|1286.12|917.53
+INFIX|2041.0|1164.58|900.65
+IMMIX|2037.0|1354.85|873.22
+ZIMBI|2029.0|1195.57|901.47
+KUDZU|2026.0|1272.01|908.86
+XYLYL|2026.0|1275.45|880.61
+KIBBI|2021.0|1252.12|890.99
+JUJUS|2016.0|1308.01|850.3
+JUKUS|2008.0|1203.18|878.62
+KUZUS|2001.0|1186.9|877.59
+
+A full report is available [here](https://github.com/taylorreece/wordle/blob/main/results.csv).
+
+I mentioned that the data were skewed heavily right and left depending on what guess you had.
+Here's the histogram for `soare`:
+
+![soare histogram](/img/wordle/soare.png)
+
+You can see that for many solutions, guessing `soare` reduces the possible solutions from 2,315 to just a few dozen!
