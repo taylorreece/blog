@@ -66,6 +66,9 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        googleAnalytics: {
+          trackingID: "G-RE403M5HMV",
+        }
       },
     ],
   ],
