@@ -14,6 +14,8 @@ description: What are the best (and worst) first words to guess in Wordle?
 
 [Wordle](https://www.powerlanguage.co.uk/wordle/) is the word game craze that gained extreme popularity in January of 2021.
 
+<!-- truncate -->
+
 The game is pretty simple: guess a daily 5-letter word.
 You have six chances.
 If you guess incorrectly, the letters in your guess are highlighted green, yellow and gray:
@@ -68,7 +70,7 @@ That gives you an idea of how "good" each guess is for any given solution.
 
 Once you have a set of numbers for each guess, figure out the **average** number of solutions that are eliminated by guessing some particular word.
 Depending on the guess, the data had a pretty hard right or left-skew, so in my opinion **median** best represents the "average" here.
-Given some solution, thus-and-such guess should yield about _N_ remaining options for solutions. 
+Given some solution, thus-and-such guess should yield about _N_ remaining options for solutions.
 
 ### The Results
 
@@ -76,33 +78,33 @@ After letting my little Macbook churn on my script for 4 hours, I had results.
 
 The top 10 **best** words to start out a game of Wordle are:
 
-guess|Median words remaining|Mean words remaining|Standard deviation|
----|---|---|---
-SOARE|79.0|219.75|304.9
-SAICE|80.0|232.78|318.85
-SAINE|81.0|230.17|320.17
-ARISE|91.0|254.45|355.75
-RAISE|96.0|236.61|331.34
-SANER|99.0|271.33|372.04
-RAINE|102.0|253.77|349.27
-SANTO|105.0|353.49|464.29
-SATIN|105.0|347.2|465.33
-SNARE|105.0|267.51|370.77
+| guess | Median words remaining | Mean words remaining | Standard deviation |
+| ----- | ---------------------- | -------------------- | ------------------ |
+| SOARE | 79.0                   | 219.75               | 304.9              |
+| SAICE | 80.0                   | 232.78               | 318.85             |
+| SAINE | 81.0                   | 230.17               | 320.17             |
+| ARISE | 91.0                   | 254.45               | 355.75             |
+| RAISE | 96.0                   | 236.61               | 331.34             |
+| SANER | 99.0                   | 271.33               | 372.04             |
+| RAINE | 102.0                  | 253.77               | 349.27             |
+| SANTO | 105.0                  | 353.49               | 464.29             |
+| SATIN | 105.0                  | 347.2                | 465.33             |
+| SNARE | 105.0                  | 267.51               | 370.77             |
 
 And the 10 absolute **worst** words to start a game of Wordle out with are:
 
-guess|Median words remaining|Mean words remaining|Standard deviation|
----|---|---|---
-OXBOW|2077.0|1286.12|917.53
-INFIX|2041.0|1164.58|900.65
-IMMIX|2037.0|1354.85|873.22
-ZIMBI|2029.0|1195.57|901.47
-KUDZU|2026.0|1272.01|908.86
-XYLYL|2026.0|1275.45|880.61
-KIBBI|2021.0|1252.12|890.99
-JUJUS|2016.0|1308.01|850.3
-JUKUS|2008.0|1203.18|878.62
-KUZUS|2001.0|1186.9|877.59
+| guess | Median words remaining | Mean words remaining | Standard deviation |
+| ----- | ---------------------- | -------------------- | ------------------ |
+| OXBOW | 2077.0                 | 1286.12              | 917.53             |
+| INFIX | 2041.0                 | 1164.58              | 900.65             |
+| IMMIX | 2037.0                 | 1354.85              | 873.22             |
+| ZIMBI | 2029.0                 | 1195.57              | 901.47             |
+| KUDZU | 2026.0                 | 1272.01              | 908.86             |
+| XYLYL | 2026.0                 | 1275.45              | 880.61             |
+| KIBBI | 2021.0                 | 1252.12              | 890.99             |
+| JUJUS | 2016.0                 | 1308.01              | 850.3              |
+| JUKUS | 2008.0                 | 1203.18              | 878.62             |
+| KUZUS | 2001.0                 | 1186.9               | 877.59             |
 
 A full report is available [here](https://github.com/taylorreece/wordle/blob/main/results.csv).
 

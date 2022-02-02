@@ -68,7 +68,7 @@ module.exports = {
         },
         gtag: {
           trackingID: "G-RE403M5HMV",
-        }
+        },
       },
     ],
   ],
