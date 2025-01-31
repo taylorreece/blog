@@ -12,3 +12,8 @@ documentation:
   label: Documentation
   permalink: /documentation
   description: Musings about documentation
+
+bubblecheck:
+  label: BubbleCheck
+  permalink: /bubblecheck
+  description: Blog about my journey rebuilding BubbleCheck
