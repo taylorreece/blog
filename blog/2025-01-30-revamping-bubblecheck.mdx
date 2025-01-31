@@ -1,5 +1,5 @@
 ---
-title: Revamping BubbleCheck
+title: BubbleCheck's Old Tech Stack
 authors: taylorreece
 tags: [bubblecheck]
 description: BubbleCheck runs on a pretty old tech stack. Let's look at what currently exists (and what needs to change).
@@ -11,8 +11,6 @@ Now, over a decade later, 308 teachers have used BubbleCheck to automatically gr
 Assuming each exam would have taken, say, 5 minutes to grade by hand, it's saved teachers a collective 4000 hours of grading.
 
 At this point, I an confidently say that the project was worth it. [Relevant XKCD](https://xkcd.com/1205/).
-
-![XKCD on time savings](https://imgs.xkcd.com/comics/is_it_worth_the_time_2x.png)
 
 But, technology changes and BubbleCheck is built on a tech stack that is considered "ancient" at this point.
 
@@ -50,6 +48,7 @@ Now, it's installed on a single EC2 in [AWS](https://aws.amazon.com/) that runs 
 | Frontend Hosting          | Server-side rendering from Laravel |
 | CI/CD Deployment          | Manual `rsync` of new files        |
 | Infrastructure Management | Manual                             |
+| Image Processing          | C++ with OpenCV                    |
 
 Obviously this tech stack is _old_.
 Most components of my tech stack have been EOL'd for years.
