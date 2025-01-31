@@ -1,0 +1,14 @@
+wordle:
+  label: Wordle
+  permalink: /wordle
+  description: Code relating to Wordle
+
+recipes:
+  label: Recipes
+  permalink: /recipes
+  description: Recipes I like to make
+
+documentation:
+  label: Documentation
+  permalink: /documentation
+  description: Musings about documentation
