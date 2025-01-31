@@ -1,0 +1,53 @@
+---
+title: BubbleCheck's New Tech Stack
+authors: taylorreece
+tags: [bubblecheck]
+description: Let's look at my proposed new tech stack for BubbleCheck.
+---
+
+Last post, I talked about my legacy app's [old, outdated tech stack](./2025-01-30-revamping-bubblecheck.mdx).
+Now, let's look at the new stack I hope to use.
+
+{/* truncate */}
+
+## Goals of BubbleCheck's revamp
+
+I have two main goals for this app rewrite:
+
+1. To make BubbleCheck production-ready, which means usable, maintainable, and scalable, using modern technologies.
+1. To learn about frameworks and technologies that I'm less familiar with.
+
+## New frameworks and technologies
+
+I spent some time researching frameworks and libraries that developers in 2024 are fond of.
+The [StackOverflow 2024 Survey](https://survey.stackoverflow.co/2024/technology) was particularly helpful in identifying systems that would be helpful to learn, and would fit in nicely with my needs.
+
+Some of these decisions might change as I dig in, but I'm trying my hardest to avoid [analysis paralysis](https://en.wikipedia.org/wiki/Analysis_paralysis).
+
+| Component                 | Technology                                        |
+| ------------------------- | ------------------------------------------------- |
+| Backend Language          | Node.js (TypeScript)                              |
+| Backend ORM               | Prisma                                            |
+| Backend API Type          | GraphQL (graphql-yoga)                            |
+| Web Server                | Likely express with nginx behind some API gateway |
+| Backend Compute           | Lambda? ECS? TBD.                                 |
+| Database                  | PostgreSQL                                        |
+| Frontend Framework        | Svelte                                            |
+| Frontend UI               | Tailwind CSS                                      |
+| Frontend API Client       | Some GraphQL library (graphql-request or Apollo)  |
+| Frontend Hosting          | Static files in a bucket behind an API gateway    |
+| CI/CD Deployment          | GitHub Actions running Terraform                  |
+| Infrastructure Management | Terraform on GCP                                  |
+
+### Backend language
+
+In my current line of work, I work almost exclusively in TypeScript and I've grown fond of typed languages.
+While other web backend languages like PHP and Python have made strides towards typing in recent years, the TypeScript ecosystem is where I'm most comfortable.
+
+### Backend ORM
+
+The two big players in TypeScript ORMs are Prisma and TypeORM.
+I played around with both, and both seemed to solve the problem I needed solved.
+Both offered native database migrations, great docs, and an "ejector seat" so I can write my own SQL or extend the ORM as needed.
+
+Prisma "felt" a little more intuitive. With almost [near-identical usage](https://npm-stat.com/charts.html?package=%40prisma%2Fclient&package=typeorm&from=2024-01-30&to=2025-01-30) and both solving my problem, I selected Prisma.
