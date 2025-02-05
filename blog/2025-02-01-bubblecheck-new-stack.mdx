@@ -6,7 +6,7 @@ description: Let's look at my proposed new tech stack for BubbleCheck.
 ---
 
 Last post, I talked about my legacy app's [old, outdated tech stack](./2025-01-30-revamping-bubblecheck.mdx).
-Now, let's look at the new stack I hope to use.
+Now, let's look at the new stack I hope to use as I rewrite BubbleCheck.
 
 {/* truncate */}
 
@@ -15,7 +15,7 @@ Now, let's look at the new stack I hope to use.
 I have two main goals for this app rewrite:
 
 1. To make BubbleCheck production-ready, which means usable, maintainable, and scalable, using modern technologies.
-1. To learn about frameworks and technologies that I'm less familiar with.
+1. To learn about frameworks and technologies that I'm not terribly familiar with.
 
 ## New frameworks and technologies
 
@@ -30,7 +30,7 @@ Some of these decisions might change as I dig in, but I'm trying my hardest to a
 | Backend ORM               | Prisma                                            |
 | Backend API Type          | GraphQL (graphql-yoga)                            |
 | Web Server                | Likely express with nginx behind some API gateway |
-| Backend Compute           | Lambda? ECS? TBD.                                 |
+| Backend Compute           | Google Cloud Run? Containers? TBD                 |
 | Database                  | PostgreSQL                                        |
 | Frontend Framework        | Svelte                                            |
 | Frontend UI               | Tailwind CSS                                      |
@@ -38,6 +38,7 @@ Some of these decisions might change as I dig in, but I'm trying my hardest to a
 | Frontend Hosting          | Static files in a bucket behind an API gateway    |
 | CI/CD Deployment          | GitHub Actions running Terraform                  |
 | Infrastructure Management | Terraform on GCP                                  |
+| Mobile App                | React Native                                      |
 
 ### Backend language
 
@@ -47,7 +48,77 @@ While other web backend languages like PHP and Python have made strides towards 
 ### Backend ORM
 
 The two big players in TypeScript ORMs are Prisma and TypeORM.
-I played around with both, and both seemed to solve the problem I needed solved.
+I experimented with both, and both seemed to solve the problem I needed solved.
 Both offered native database migrations, great docs, and an "ejector seat" so I can write my own SQL or extend the ORM as needed.
 
-Prisma "felt" a little more intuitive. With almost [near-identical usage](https://npm-stat.com/charts.html?package=%40prisma%2Fclient&package=typeorm&from=2024-01-30&to=2025-01-30) and both solving my problem, I selected Prisma.
+Prisma "felt" a little more intuitive.
+With almost [near-identical usage](https://npm-stat.com/charts.html?package=%40prisma%2Fclient&package=typeorm&from=2024-01-30&to=2025-01-30) and both solving my problem, I selected Prisma (again, avoiding _analysis paralysis_).
+
+### Backend API type
+
+I've build REST APIs before.
+And, since this is a learning exercise I want to get out of my comfort zone.
+
+I've been a consumer of GraphQL APIs before, but have done very little authoring of them.
+
+Typically, GraphQL APIs are advantageous when you don't know your data access pattern ahead of time.
+I know mine, so I could just as easily build a REST API to solve my problems, but I'm excited about the prospect of being able to build my frontend, backend, and mobile apps independently of one another.
+It'll be nice to be able to make a change to the way I fetch data in my mobile apps, without needing to push a backend change.
+
+### Backend compute
+
+I'm pretty keen to save money, at least for this first iteration.
+Google cloud offers a pretty reasonable free tier for their [Cloud Run](https://cloud.google.com/run) service (similar to AWS Lambda).
+
+I've been working in the AWS ecosystem for the better part of a decade, and I want to learn something new.
+So, I'd like to give Google Cloud a try.
+
+I imagine I'll start in a serverless environment, and migrate to something more robust if I ever have enough users to scale.
+
+### Database
+
+This is a category where I'm leaning on a technology that I'm already really familiar with.
+I've was a PostgreSQL DBA for a few years as devops engineer.
+
+PostgreSQL is the most popular database according to StackOverflow's 2024 survey for a reason - it's fast and extensible.
+
+One thing I want to learn about, though, is row-level security ([RLS](https://www.postgresql.org/docs/current/ddl-rowsecurity.html)).
+My goal is to leverage RLS so that all data in all tables is tenantized.
+By default, if you `SELECT * FROM courses`, RLS rules will prevent you from seeing any records.
+If you have a tenant ID in hand (after auth), you'll see _only the courses you own_.
+
+I'm excited about RLS - my having an "opt-in" rather than "opt-out" security posture for the database, I'll be able to avoid annoying `WHERE tenant_id='....';` clauses on every query I make.
+
+### Frontend framework
+
+I've done very little research on this category.
+I'm pretty comfortable with React, but want to branch out.
+
+People who use Svelte seem to really like it.
+I might build a POC with Svelte first, and if it goes well, use it for my frontend.
+
+### Frontend UI
+
+Along those same lines, I'm very familiar with Material UI (particularly the [React implementation](https://mui.com/material-ui/) of MUI).
+But, people seem hot about Tailwind, so I want to see what all the fuss is about.
+
+### Infrastructure management
+
+I've used CloudFormation for AWS, and Terraform for AWS and Azure resources.
+There's a great Terraform provider for Google Cloud -- might as well give that a whirl.
+
+### Mobile app
+
+I'm not building two mobile apps.
+So, the big players here are [React Native](https://reactnative.dev/), [Flutter](https://flutter.dev/), [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html), and [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui/what-is-maui).
+
+I'm undecided here, but leaning towards React Native since I want to stay in the TypeScript ecosystem if I can.
+
+Regardless of which framework I choose, I'll likely need an "ejector seat" so that I can pull in native OpenCV bindings so I can process live video for real-time exam grading.
+
+## Let's go!
+
+Like I noted, I did some due diligence but tried to avoid analysis paralysis.
+I might end up grabbing some framework, just to throw it away a few days later if it's not a good fit.
+
+Let's get building!
