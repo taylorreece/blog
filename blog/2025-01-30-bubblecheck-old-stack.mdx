@@ -5,7 +5,7 @@ tags: [bubblecheck]
 description: BubbleCheck runs on a pretty old tech stack. Let's look at what currently exists (and what needs to change).
 ---
 
-In 2013 I built [BubbleCheck](https://bubblecheck.reecemath.com/), an automated grading tool that lets teachers build multiple choice exams, scan in their students' completed exams, and review the results.
+In 2013 I built [BubbleCheck](https://bubblecheck.reecemath.com/), an automated grading tool that lets teachers design multiple choice exams, scan in their students' completed exams, and review the results.
 
 Now, over a decade later, 308 teachers have used BubbleCheck to automatically grade a whopping of 48,000 exams.
 Assuming each exam would have taken, say, 5 minutes to grade by hand, it's saved teachers a collective 4000 hours of grading.
@@ -21,20 +21,21 @@ So, it's time to rebuild BubbleCheck with modern tools.
 ## BubbleCheck's old tech stack
 
 In 2013 I reached for technologies that I was comfortable with - what people affectionately call a [LAMP stack](<https://en.wikipedia.org/wiki/LAMP_(software_bundle)>) (**L**inux, **A**pache, **M**ySQL, **P**HP).
-I had built some web apps on top of the LAMP stack for my college's student government website, [Oleville](https://www.oleville.com/), and it's the stack I felt most comfortable with.
+I had built some web apps on top of the LAMP stack for my college's student government website, [Oleville](https://www.oleville.com/), so the learning curve wasn't high.
 
 I used the (latest and greatest at the time) version 5.x of [PHP](https://www.php.net/).
 I knew that I didn't want to build an entire ORM layer myself, so I reached for [Laravel](https://laravel.com/), which I found very pleasant to work with.
 
-The processing of exams that teachers scan in is done in C++ using [MuPDF](https://mupdf.com/) to convert PDF scans to PNG images, and [OpenCV](https://opencv.org/) to process the images.
-Exams that teachers upload are placed in a directory, and a CRON job that kicks off every minute grades the exams, one at a time.
+Teachers generally scan students' exams to PDF files.
+The processing of their PDFs is done in C++ using [MuPDF](https://mupdf.com/) to convert PDF scans to individual PNG images, and [OpenCV](https://opencv.org/) is leveraged to process the images.
+Uploaded PDFs are processed by a [cron job](https://en.wikipedia.org/wiki/Cron) that kicks off every minute.
 
-The frontend is rendered server-side with Laravel and leverages the [Bootstrap](https://getbootstrap.com/) CSS framework.
+The frontend is rendered server-side with Laravel and leverages the [Bootstrap](https://getbootstrap.com/) CSS framework for UI elements.
 The frontend communicates with the backend using [jQuery](https://jquery.com/).
 
 The web services does not scale.
-From 2013 until 2017 I hosted BubbleCheck on a shared [Bluehost](https://www.bluehost.com/) node with hosted [MySQL](https://www.mysql.com/).
-Now, it's installed on a single EC2 in [AWS](https://aws.amazon.com/) that runs PHP, MySQL, and has a mounted [EFS](https://aws.amazon.com/efs/) filesystem for storing scanned exams.
+From 2013 until 2017 I hosted BubbleCheck on a shared [Bluehost](https://www.bluehost.com/) PHP node, backed by a hosted [MySQL](https://www.mysql.com/).
+Now, it's installed on a single `t2.micro` EC2 in [AWS](https://aws.amazon.com/) that runs PHP, MySQL, and has a mounted [EFS](https://aws.amazon.com/efs/) filesystem for storing scanned exams.
 
 | Component                 | Technology                         |
 | ------------------------- | ---------------------------------- |
@@ -54,4 +55,4 @@ Obviously this tech stack is _old_.
 Most components of my tech stack have been EOL'd for years.
 It's time to revamp things.
 
-In the upcoming blog posts, I'll write about my journey as I rebuild BubbleCheck using modern technologies, to make a maintainable, scalable web and mobile app, and I share my learnings along the way.
+In the upcoming blog posts, I'll write about my journey as I rebuild BubbleCheck using modern technologies, to make a maintainable, scalable web and mobile app, and I'll share my learnings along the way.
