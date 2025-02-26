@@ -5,7 +5,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "Taylor's Blog",
   tagline: "Taylor's Blog",
-  url: "https://blog.reecemath.com",
+  url: "https://taylorreece.dev",
   baseUrl: "/",
   favicon: "img/favicon.ico",
 
@@ -27,7 +27,7 @@ const config: Config = {
       {
         docs: false,
         blog: {
-          routeBasePath: "/",
+          routeBasePath: "/blog",
           showReadingTime: true,
           feedOptions: {
             type: ["rss", "atom"],
@@ -47,47 +47,53 @@ const config: Config = {
   themeConfig: {
     // image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Taylor's Blog",
+      title: "",
       logo: {
-        alt: "My Site Logo",
+        alt: "Taylor Blog Logo",
         src: "https://avatars1.githubusercontent.com/u/3622586?s=400&u=92d81adf0d87e31ac26d0f335e154697c2e5d04a&v=4",
       },
       items: [
         {
-          href: "https://github.com/taylorreece/blog",
-          label: "GitHub",
+          label: "Blog",
+          to: "/blog",
           position: "right",
         },
-      ],
-    },
-    footer: {
-      style: "dark",
-      links: [
         {
-          title: "Social",
+          label: "Socials",
+          position: "right",
           items: [
             {
-              label: "Blog",
-              to: "/",
-            },
-            {
               label: "GitHub",
-              href: "https://github.com/taylorreece/",
+              href: "https://github.com/taylorreece",
             },
             {
               label: "LinkedIn",
               href: "https://www.linkedin.com/in/taylor-reece/",
             },
+            {
+              label: "Bluesky",
+              href: "https://bsky.app/profile/taylorreece.bsky.social",
+            },
           ],
         },
       ],
+    },
+    footer: {
       copyright: `Copyright © ${new Date().getFullYear()} Taylor Reece`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
   } satisfies Preset.ThemeConfig,
+  stylesheets: [
+    "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+  ],
 };
 
 export default config;
