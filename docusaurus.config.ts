@@ -72,7 +72,7 @@ const config: Config = {
             },
             {
               label: "Bluesky",
-              href: "https://bsky.app/profile/taylorreece.bsky.social",
+              href: "https://bsky.app/profile/taylorreece.dev",
             },
           ],
         },

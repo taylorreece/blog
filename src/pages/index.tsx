@@ -14,7 +14,7 @@ const theme = createTheme({
   },
 });
 
-const Paragraph = styled(Typography)(({ theme }) => ({ margin: ".5em" }));
+const Paragraph = styled(Typography)(() => ({ margin: ".5em" }));
 
 function Home() {
   return (
@@ -30,8 +30,8 @@ function Home() {
               <img
                 src="https://avatars1.githubusercontent.com/u/3622586?s=400&u=92d81adf0d87e31ac26d0f335e154697c2e5d04a&v=4"
                 style={{
-                  maxWidth: "150px",
-                  maxHeight: "150px",
+                  maxWidth: "120px",
+                  maxHeight: "120px",
                   borderRadius: "50%",
                 }}
               />
@@ -59,7 +59,7 @@ function Home() {
             <Paragraph>
               I spent my first several years post-college teaching math at some
               high schools in the Twin Cities. Then, I decided to give my
-              computer science degree a try, and worked as a DevOps Engineer for
+              computer science degree a try and worked as a DevOps Engineer for
               six years.
             </Paragraph>
             <Paragraph>
