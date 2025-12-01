@@ -3,6 +3,6 @@
     "unifiedjs.vscode-mdx",
     "pflannery.vscode-versionlens",
     "streetsidesoftware.code-spell-checker",
-    "esbenp.prettier-vscode"
+    "biomejs.biome"
   ]
 }

@@ -14,7 +14,10 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   onBrokenAnchors: "throw",
-  onBrokenMarkdownLinks: "throw",
+
+  markdown: {
+    hooks: { onBrokenMarkdownLinks: "throw" },
+  },
 
   i18n: {
     defaultLocale: "en",
